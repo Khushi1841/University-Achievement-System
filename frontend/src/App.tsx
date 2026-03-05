@@ -90,7 +90,7 @@ function CategoryPage() {
   const [selectedYear, setSelectedYear] = useState('All');
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/achievements/all')
+    fetch('https://university-achievement-system.onrender.com/api/achievements/all')
       .then((res) => res.json())
       .then((result) => {
         if (result.success && Array.isArray(result.data)) {
@@ -107,7 +107,7 @@ function CategoryPage() {
   const handleDelete = async (deleteId: string) => {
     if (window.confirm("⚠️ Are you sure you want to DELETE this entry permanently?")) {
       try {
-        const response = await fetch(`http://localhost:5000/api/achievements/delete/${deleteId}`, { method: 'DELETE' });
+        const response = await fetch(`https://university-achievement-system.onrender.com/api/achievements/delete/${deleteId}`, { method: 'DELETE' });
         if (response.ok) {
           alert("🗑️ Entry deleted successfully!");
           setAchievements(achievements.filter((item: any) => item._id !== deleteId));
@@ -260,7 +260,7 @@ function AdminPanel() {
     });
 
     try {
-      const response = await fetch('http://localhost:5000/api/achievements/add', { method: 'POST', body: submitData });
+      const response = await fetch('https://university-achievement-system.onrender.com/api/achievements/add', { method: 'POST', body: submitData });
       if (response.ok) {
         alert("🎉 YAY! Achievement aur Photo uploaded successfully!");
         setFormData({ ...formData, event_name: "", position: "", participant_name: "", date: "", batch: "", photo: null, achievement_subtype: categorySubtypes[formData.achievement_category][0] });
